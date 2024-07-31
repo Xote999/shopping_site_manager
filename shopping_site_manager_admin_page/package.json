@@ -9,12 +9,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.7.8",
     "pinia": "^2.1.7",
+    "sass": "^1.77.8",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@iconify-json/ep": "^1.1.15",
+    "@iconify-json/logos": "^1.1.43",
+    "@iconify-json/pajamas": "^1.1.48",
     "@vitejs/plugin-vue": "^5.0.5",
+    "unplugin-auto-import": "^0.18.2",
+    "unplugin-icons": "^0.19.1",
+    "unplugin-vue-components": "^0.27.3",
     "vite": "^5.3.1"
   }
 }

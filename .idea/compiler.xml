@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="shopping_site_manager_support" />
+        <module name="shopping_site_manager_common" />
+        <module name="shopping_site_manager_auth" />
+        <module name="shopping_site_manager_starter" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
