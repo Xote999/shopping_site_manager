@@ -7,13 +7,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElMain: typeof import('element-plus/es')['ElMain']
     ElText: typeof import('element-plus/es')['ElText']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./components/icons/IconCommunity.vue')['default']
@@ -28,6 +32,8 @@ declare module 'vue' {
     ILogosApple: typeof import('~icons/logos/apple')['default']
     ILogosFacebook: typeof import('~icons/logos/facebook')['default']
     ILogosGoogleIcon: typeof import('~icons/logos/google-icon')['default']
+    IPajamasEye: typeof import('~icons/pajamas/eye')['default']
+    IPajamasEyeSlash: typeof import('~icons/pajamas/eye-slash')['default']
     IPajamasTwitter: typeof import('~icons/pajamas/twitter')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

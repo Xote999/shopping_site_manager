@@ -6,20 +6,26 @@
             <el-form :model="loginForm" ref="formRef" label-width="auto">
                 <!-- メールアドレス -->
                 <el-form-item>
-                    <el-input v-model="loginForm.account" placeholder="メールアドレス">
+                    <el-input v-model="loginForm.account" placeholder="メールアドレス、携帯番号、ユーザーネーム">
                         <template #prefix>
                             <el-icon class="el-input_icon">
-                                <i-ep-message/>
+                                <i-ep-user/>
                             </el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
                 <!-- パスワード -->
                 <el-form-item>
-                    <el-input v-model="loginForm.password" placeholder="パスワード" type="password">
+                    <el-input v-model="loginForm.password" placeholder="パスワード" :type="passwordVisible ? 'text' : 'password'">
                         <template #prefix>
                             <el-icon class="el-input_icon">
                                 <i-ep-lock/>
+                            </el-icon>
+                        </template>
+                        <template #suffix>
+                            <el-icon @click="togglePassword" class="eye_icon">
+                                <i-pajamas-eye v-if="passwordVisible"/>
+                                <i-pajamas-eye-slash v-else/>
                             </el-icon>
                         </template>
                     </el-input>
@@ -30,7 +36,7 @@
                 </div>
                 <!-- ボタン -->
                 <el-form-item>
-                    <el-button style="width:100%;" type="primary">ログイン</el-button>
+                    <el-button style="width:100%;" type="primary" @click="handleLogin">ログイン</el-button>
                 </el-form-item>
                 <el-divider>または</el-divider>
                 <!-- ソーシャルログイン -->
@@ -47,12 +53,49 @@
 
 <script setup>
     //refのインポート
-    import {ref} from "vue"
+    import { ref } from 'vue'
+
+    //loginのインポート
+    import { login } from '@/api/auth/index.js'
+
+    //tokenのインポート
+    import { setToken } from '@/utils/token/index.js'
+
+    //routerのインポート
+    import { useMenuStore } from '@/stores/menu.js'
+
+    //routerのインポート
+    import { useRouter } from 'vue-router'
+
+    const router = useRouter();
+
+    const menuStore = useMenuStore();
 
     const loginForm = ref({
         account:undefined,
-        password:undefined
+        password:undefined,
+        remenberMe:true
     })
+
+    const passwordVisible = ref(false);
+
+    const togglePassword = () => {
+        passwordVisible.value = !passwordVisible.value;
+    };
+
+    //handleLoginファクション
+    function handleLogin(){
+        //loginの呼び出し
+        login(loginForm.value).then((res) =>{
+            console.log("ログイン====>",res);
+            //ログインが成功かどうか
+            if(res.data.code == 200){
+                // console.log("ログイン成功!");
+                setToken("ssmSysToken",res.data.token);
+            }
+        })
+    }
+
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +134,10 @@
                 font-size: 2em;
                 cursor: pointer;
             }
+        }
+
+        .eye_icon{
+            cursor: pointer;
         }
     }
 }

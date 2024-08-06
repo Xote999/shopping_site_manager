@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
+import Layout from '@/Layout/index.vue'
+
 
 //ルーティングの設定
 const constRouter = [
@@ -12,6 +14,11 @@ const constRouter = [
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path:'/index',
+    name:'index',
+    component: Layout
   }
 ]
 

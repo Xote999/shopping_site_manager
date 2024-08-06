@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.auth.mapper.SsmSysUserMapper">
+<mapper namespace="com.example.common.mapper.SsmSysUserMapper">
+    
+    <resultMap id="ssmSysUserResultMap" type="com.example.common.domain.entity.SsmSysUser">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="email" property="email"/>
+        <result column="mobile" property="mobile"/>
+        <result column="sex" property="sex"/>
+        <result column="avatar" property="avatar"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="creator" property="creator"/>
+        <result column="updater" property="updater"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="deleted" property="deleted"/>
+        <collection property="roleList" javaType="list" resultMap="ssmRoleResultMap"/>
+    </resultMap>
+
+    <resultMap id="ssmRoleResultMap" type="com.example.common.domain.entity.SsmRole">
+        <id column="role_id" property="roleId"/>
+        <result column="role_label" property="roleLabel"/>
+        <result column="role_name" property="roleName"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="creator" property="creator"/>
+        <result column="updater" property="updater"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
+    <select id="selectUserByAccount" resultMap="ssmSysUserResultMap">
+        select su.user_id,su.user_name,su.nick_name,su.email,su.mobile,su.sex,su.avatar,su.password,su.status,su.creator,su.updater,su.create_time,su.update_time,su.remark,
+                sr.role_id,sr.role_label,sr.role_name,sr.sort,sr.status,sr.creator,sr.updater,sr.create_time,sr.update_time,sr.remark
+        from ssm_sys_user su
+        left join ssm_sys_user_role sur on su.user_id = sur.user_id
+        left join ssm_role sr on sur.role_id = sr.role_id
+        <where>
+            su.deleted = 0 and sr.deleted = 0 and
+            <if test="accountType == 0">
+                su.user_name = #{account}
+            </if>
+            <if test="accountType == 1">
+                su.mobile = #{account}
+            </if>
+            <if test="accountType == 2">
+                su.email = #{account}
+            </if>
+        </where>
+    </select>
 </mapper>

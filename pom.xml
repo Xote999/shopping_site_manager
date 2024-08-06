@@ -22,6 +22,9 @@
         <hutool.version>5.8.22</hutool.version>
         <slf4j.version>2.0.9</slf4j.version>
         <logback.version>1.4.11</logback.version>
+        <jwt.version>0.9.1</jwt.version>
+        <jxb.version>2.3.1</jxb.version>
+        <jackson.version>2.15.0</jackson.version>
         <example.version>1.0.0</example.version>
     </properties>
     <dependencyManagement>
@@ -38,10 +41,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
-        <!-- Spring Boot Starter Data JPA -->
+        <!-- Spring Boot Starter Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
         <!-- MyBatis Plus -->
@@ -100,6 +103,31 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <!-- JXB -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jxb.version}</version>
+        </dependency>
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- Jackson datatype-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
 
 
         <dependency>
@@ -107,13 +135,11 @@
             <artifactId>shopping_site_manager_auth</artifactId>
             <version>${example.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>shopping_site_manager_support</artifactId>
             <version>${example.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>shopping_site_manager_common</artifactId>

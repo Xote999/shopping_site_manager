@@ -1,8 +1,9 @@
 package com.example.auth.controller;
 
-import com.example.auth.entity.SsmSysUser;
-import com.example.auth.service.ISsmSysUserService;
+import com.example.common.domain.entity.SsmSysUser;
+import com.example.common.service.ISsmSysUserService;
 import com.example.common.response.SsmSysUserResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,11 +12,8 @@ import java.util.List;
 @RequestMapping("ssm/sysUser")
 public class SsmSysUserController {
 
-    private final ISsmSysUserService ssmSysUserService;
-
-    public SsmSysUserController(ISsmSysUserService ssmSysUserService) {
-        this.ssmSysUserService = ssmSysUserService;
-    }
+    @Autowired
+    private ISsmSysUserService ssmSysUserService;
 
     @PostMapping
     public SsmSysUserResult addSysUser(@RequestBody SsmSysUser ssmSysUser) {

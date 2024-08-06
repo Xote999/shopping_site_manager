@@ -4,5 +4,24 @@ spring:
     username: root
     password: 923R5psv83DS
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+data:
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+#    password: 923R5psv83DS
+    timeout: 10000
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1
+
 server:
   port: 8081
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
